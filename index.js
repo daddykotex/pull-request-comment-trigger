@@ -23,15 +23,17 @@ async function run() {
     }
     console.log(context.payload);
     const body = context.payload.issue.body;
-    
+
     console.log(body);
-    core.setOutput('comment_body', body);
+    core.setOutput("comment_body", body);
 
     const { owner, repo } = context.repo;
 
-
-    const prefixOnly = core.getInput("prefix_only") === 'true';
-    if ((prefixOnly && !body.startsWith(trigger)) || (!prefixOnly && !body.includes(trigger))) {
+    const prefixOnly = core.getInput("prefix_only") === "true";
+    if (
+        (prefixOnly && !body.startsWith(trigger)) ||
+        (!prefixOnly && !body.includes(trigger))
+    ) {
         core.setOutput("triggered", "false");
         return;
     }
