@@ -21,10 +21,10 @@ async function run() {
         core.setOutput("triggered", "false");
         return;
     }
-    console.log(context.payload);
-    const body = context.payload.issue.body;
-
-    console.log(body);
+    const body =
+        (context.eventName === "issue_comment"
+            ? context.payload.comment.body
+            : context.payload.pull_request.body) || "";
     core.setOutput("comment_body", body);
 
     const { owner, repo } = context.repo;
@@ -37,7 +37,6 @@ async function run() {
         core.setOutput("triggered", "false");
         return;
     }
-    console.log(trigger);
     core.setOutput("triggered", "true");
 
     if (!reaction) {
