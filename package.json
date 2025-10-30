@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dist": "npx -p @zeit/ncc ncc build index.js",
+    "dist": "ncc build index.js -o dist",
     "format": "prettier --write '*.js' --tab-width=4"
   },
   "repository": {
@@ -18,10 +18,16 @@
     "url": "https://github.com/jaredly/actions-testbed/issues"
   },
   "homepage": "https://github.com/jaredly/actions-testbed#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
-    "@actions/core": "^1.2.0",
-    "@actions/github": "^1.1.0",
-    "prettier": "^1.19.1",
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^6.0.0",
+    "prettier": "^3.0.0",
     "prettier-cli": "^0.1.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.0"
   }
 }
